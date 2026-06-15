@@ -3,6 +3,9 @@ package projects;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
+
+
 
 abstract class Product {
     private String name;
@@ -188,22 +191,68 @@ class ShoppingCart {
 
 public class Shoping_Cart {
     public static void main(String[] args) {
+
+
         ProductCatalog catalog = new ProductCatalog();
+        ShoppingCart cart = new ShoppingCart();
 
         catalog.addProduct(new ElectronicsProduct("iPhone 15", 80000, 2));
         catalog.addProduct(new ElectronicsProduct("Headphones", 2500, 1));
         catalog.addProduct(new ClothingProduct("T-Shirt", 599, "M"));
         catalog.addProduct(new ClothingProduct("Jeans", 1299, "L"));
 
-        ShoppingCart cart = new ShoppingCart();
 
-        try {
-            cart.addItem(catalog.findProduct("iPhone 15"));
-            cart.addItem(catalog.findProduct("T-Shirt"));
-            cart.checkout();
-            cart.checkout();
-        } catch (ProductNotFoundException e) {
-            System.out.println(e.getMessage());
+        try (Scanner sc = new Scanner(System.in)) {
+            while(true) {
+
+                System.out.println("\n======= Shopping Cart =======");
+                System.out.println("1. View all products");
+                System.out.println("2. Add product to cart\n3. Remove from cart\n4. View cart\n5. Checkout\n6. Exit\n=============================");
+
+                int choose = sc.nextInt();
+                sc.nextLine();
+                switch (choose) {
+                    case 1:
+                        catalog.displayAll();
+                        break;
+                    
+                    case 2:
+                        try{
+                            System.out.print("Enter product name:");
+                            String product = sc.nextLine();
+                            cart.addItem(catalog.findProduct(product));
+                        }catch(ProductNotFoundException e) {
+                            System.out.println(e.getMessage());
+                        }
+
+                        break;
+
+                    case 3:
+                        try{
+                            System.out.print("Enter product name: ");
+                            String product = sc.nextLine();
+                            cart.removeItem(product);
+                        }catch(ProductNotFoundException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        
+                        break;
+
+                    case 4:
+                        cart.displayCart();
+                        break;
+
+                    case 5:
+                        cart.checkout();
+                        break;
+                    
+                    case 6:
+                        return;
+                    default:
+                        System.out.println("Enter valid option! ");
+                        break;
+                }
+            }
         }
     }
 
