@@ -192,9 +192,9 @@ public class Employee_Management {
                 sc.nextLine();
                 switch (option) {
                     case 1:
-                        System.out.println("a. FullTime ");
-                        System.out.println("PartTime: ");
-                        System.out.print("Choose option");
+                        System.out.println("a. FullTime: ");
+                        System.out.println("b. PartTime: ");
+                        System.out.print("Choose option: ");
                         char op = sc.next().charAt(0);
                         sc.nextLine();
                         switch (op) {
