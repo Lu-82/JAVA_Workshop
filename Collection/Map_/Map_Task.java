@@ -23,12 +23,8 @@ public class Map_Task {
 
             System.out.print("Enter name: ");
             String name = sc.nextLine();
-            if(book.containsKey(name))
-                System.out.println(book.get(name));
-            else
-                System.out.println("user not found");
 
-            book.put("Raghu","9873465123");
+            System.out.println(book.getOrDefault(name, "user not found"));
 
             new TreeMap<>(book).forEach((k,v) -> System.out.println(k+": "+v));
         }
