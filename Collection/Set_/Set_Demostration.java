@@ -13,7 +13,7 @@ Then print them in alphabetical order
 Check if "bird" is in the collection */
 
 
-public class Hash_set {
+public class Set_Demostration {
     public static void main(String[] args) {
         List<String> animals = List.of("cat","dog","cat","bird","dog","fish");
 
